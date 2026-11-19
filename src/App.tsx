@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Check,
   Compass,
   FileSpreadsheet,
-  History,
   LogOut,
   Menu,
   Moon,
   Server,
   Settings,
-  ShieldCheck,
   Ship,
   Sun,
   X,
@@ -114,7 +111,7 @@ export default function App() {
         <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
           <div className="flex items-center gap-3.5 rounded-2xl border border-white/20 bg-[#0B2240]/90 px-6 py-4 text-sm font-semibold text-white shadow-xl backdrop-blur-md">
             <img
-              src="/assets/aistudio/Logo_44613c4c.png"
+              src="./assets/aistudio/Logo_44613c4c.png"
               alt="EMEL SHIPPING"
               className="h-8 w-8 rounded-lg bg-white p-1 object-contain"
             />
@@ -159,17 +156,15 @@ export default function App() {
       <NauticalChartBackdrop />
 
       <div className="relative z-10 flex min-h-screen flex-col">
-        {/* Sleek Top Navigation Shell */}
         <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0B2240] text-white shadow-xs dark:border-slate-800 dark:bg-[#0D1322]">
           <div className="mx-auto flex h-14 max-w-[1360px] items-center justify-between gap-4 px-4 sm:px-6 lg:h-16 lg:px-8">
-            {/* Brand Identity (Left) */}
             <button
               type="button"
               onClick={() => handleNavigate('tracking')}
               className="flex items-center gap-3 text-left shrink-0"
             >
               <img
-                src="/assets/aistudio/Logo_44613c4c.png"
+                src="./assets/aistudio/Logo_44613c4c.png"
                 alt="EMEL SHIPPING Logo"
                 className="h-9 w-auto shrink-0 object-contain mix-blend-screen lg:h-10"
               />
@@ -183,7 +178,6 @@ export default function App() {
               </div>
             </button>
 
-            {/* Primary Navigation Links (Center — Single-line) */}
             <nav aria-label="Ana Menü" className="hidden items-center gap-1 lg:flex">
               {visibleNav.map((item) => {
                 const Icon = item.icon;
@@ -206,7 +200,6 @@ export default function App() {
               })}
             </nav>
 
-            {/* PWA, Direct Theme Toggle & Logout Controls (Right) */}
             <div className="hidden items-center gap-2 shrink-0 lg:flex">
               <span className="font-mono-tabular mr-1 text-xs font-semibold text-slate-200 whitespace-nowrap">
                 {userSummaryLine}
@@ -214,7 +207,6 @@ export default function App() {
 
               <PWAInstallButton />
 
-              {/* Direct Theme Toggle Buttons */}
               <button
                 type="button"
                 onClick={() => setTheme('light')}
@@ -253,7 +245,6 @@ export default function App() {
               </button>
             </div>
 
-            {/* Mobile Controls + Drawer Trigger */}
             <div className="flex items-center gap-2 lg:hidden">
               <PWAInstallButton />
               <button
@@ -268,126 +259,3 @@ export default function App() {
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
                 aria-label={mobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
-                className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 text-white"
-              >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
-          </div>
-        </header>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-40 flex lg:hidden">
-            <div
-              className="fixed inset-0 bg-[#0B2240]/50 backdrop-blur-xs"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            <div className="relative z-50 flex w-72 max-w-[82vw] flex-col justify-between bg-[#0B2240] p-5 text-white dark:bg-[#0D1322]">
-              <div>
-                <div className="flex items-center justify-between border-b border-white/15 pb-4">
-                  <div className="flex items-center gap-2.5">
-                    <img
-                      src="/assets/aistudio/Logo_44613c4c.png"
-                      alt="EMEL SHIPPING Logo"
-                      className="h-8 w-auto shrink-0 object-contain mix-blend-screen"
-                    />
-                    <span className="font-display text-base font-bold">EMEL SHIPPING</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-lg p-1 text-slate-200 hover:bg-white/10"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                </div>
-                <nav className="mt-4 space-y-1.5">
-                  {visibleNav.map((item) => {
-                    const Icon = item.icon;
-                    const active = activeSection === item.id;
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => handleNavigate(item.id)}
-                        className={`flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm font-semibold transition ${
-                          active ? 'bg-white text-[#0B2240]' : 'text-slate-200 hover:bg-white/10'
-                        }`}
-                      >
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span>{item.label}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
-
-                {/* Mobile Theme Selector */}
-                <div className="mt-6 border-t border-white/15 pt-4">
-                  <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold text-slate-300 uppercase">
-                    <Settings className="h-3.5 w-3.5" />
-                    <span>Tema Seçimi</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setTheme('light')}
-                      className={`flex items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-semibold ${
-                        theme === 'light' ? 'bg-white text-[#0B2240]' : 'bg-white/10 text-slate-200'
-                      }`}
-                    >
-                      <Sun className="h-3.5 w-3.5" />
-                      <span>Aydınlık</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTheme('dark')}
-                      className={`flex items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-semibold ${
-                        theme === 'dark' ? 'bg-sky-500 text-slate-950' : 'bg-white/10 text-slate-200'
-                      }`}
-                    >
-                      <Moon className="h-3.5 w-3.5" />
-                      <span>Siyah</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-white/15 pt-4">
-                <div className="font-mono-tabular text-xs font-semibold text-white">
-                  {userSummaryLine}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => void handleLogout()}
-                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 py-2.5 text-xs font-semibold text-white transition hover:bg-white/10"
-                >
-                  <LogOut className="h-3.5 w-3.5" />
-                  <span>Güvenli Çıkış</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Airy Main Workspace */}
-        <main className="mx-auto w-full max-w-[1360px] flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          {activeSection === 'tracking' && (
-            <ContainerTrackingView
-              initialContainerNumber={jumpContainerNo}
-              onClearInitialContainer={() => setJumpContainerNo(null)}
-            />
-          )}
-          {activeSection === 'excel' && (
-            <ExcelListSearchView
-              onSelectContainer={handleSelectContainerFromExcel}
-              onGoToSyncSetup={() => handleNavigate('sync')}
-            />
-          )}
-          {activeSection === 'sync' && <ServerSyncView />}
-          {activeSection === 'map' && <MarineTrafficMapView />}
-        </main>
-      </div>
-    </div>
-  );
-}
