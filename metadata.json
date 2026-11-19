@@ -1,0 +1,6 @@
+{
+  "name": "EMEL SHIPPING — Konteyner ve Gemi Takip Platformu",
+  "description": "Emel Shipping kurumsal konteyner, gemi ve HOEX/HTEX Excel liste takip, geçmiş raporlama ve 10 armatör entegrasyon platformu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
