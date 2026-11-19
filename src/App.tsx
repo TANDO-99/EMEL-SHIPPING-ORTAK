@@ -266,3 +266,84 @@ export default function App() {
             </div>
           </div>
         </header>
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-40 flex lg:hidden">
+            <div
+              className="fixed inset-0 bg-[#0B2240]/50 backdrop-blur-xs"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="relative z-50 flex w-72 max-w-[82vw] flex-col justify-between bg-[#0B2240] p-5 text-white dark:bg-[#0D1322]">
+              <div>
+                <div className="flex items-center justify-between border-b border-white/15 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <img
+                      src="./assets/aistudio/Logo_44613c4c.png"
+                      alt="EMEL SHIPPING Logo"
+                      className="h-8 w-auto shrink-0 object-contain mix-blend-screen"
+                    />
+                    <span className="font-display text-base font-bold">EMEL SHIPPING</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-lg p-1 text-slate-200 hover:bg-white/10"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+                <nav className="mt-4 space-y-1.5">
+                  {visibleNav.map((item) => {
+                    const Icon = item.icon;
+                    const active = activeSection === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => handleNavigate(item.id)}
+                        className={`flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm font-semibold transition ${
+                          active ? 'bg-white text-[#0B2240]' : 'text-slate-200 hover:bg-white/10'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4 shrink-0" />
+                        <span>{item.label}</span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+              <div className="border-t border-white/15 pt-4">
+                <div className="font-mono-tabular text-xs font-semibold text-white">
+                  {userSummaryLine}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => void handleLogout()}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 py-2.5 text-xs font-semibold text-white transition hover:bg-white/10"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  <span>Güvenli Çıkış</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      <main className="mx-auto w-full max-w-[1360px] flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          {activeSection === 'tracking' && (
+            <ContainerTrackingView
+              initialContainerNumber={jumpContainerNo}
+              onClearInitialContainer={() => setJumpContainerNo(null)}
+            />
+          )}
+          {activeSection === 'excel' && (
+            <ExcelListSearchView
+              onSelectContainer={handleSelectContainerFromExcel}
+              onGoToSyncSetup={() => handleNavigate('sync')}
+            />
+          )}
+          {activeSection === 'sync' && <ServerSyncView />}
+          {activeSection === 'map' && <MarineTrafficMapView />}
+        </main>
+      </div>
+    </div>
+  );
+}
