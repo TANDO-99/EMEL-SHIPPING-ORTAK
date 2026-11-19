@@ -100,6 +100,14 @@ export async function apiFetch<T>(url: string, init: RequestInit = {}): Promise<
       vessels: [],
       results: [],
       data: [],
+      total: 0,
+      totalRows: 0,
+      count: 0,
+      withBlCount: 0,
+      blCount: 0,
+      mainCount: 0,
+      japanCount: 0,
+      stats: { total: 0, withBl: 0, main: 0, japan: 0 },
     } as unknown as T;
 
   }
