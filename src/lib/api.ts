@@ -87,7 +87,21 @@ export async function apiFetch<T>(url: string, init: RequestInit = {}): Promise<
   // Diğer tüm GET ve POST isteklerini tarayıcı hafızasından karşıla
   const store = getMockStore();
   if (method === 'GET') {
-    return (store[url] ?? []) as T;
+        if (store[url]) return store[url] as T;
+    return {
+      items: [],
+      containers: [],
+      records: [],
+      rows: [],
+      files: [],
+      sheets: [],
+      history: [],
+      logs: [],
+      vessels: [],
+      results: [],
+      data: [],
+    } as unknown as T;
+
   }
 
   if (method === 'POST' || method === 'PUT') {
