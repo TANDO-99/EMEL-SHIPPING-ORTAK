@@ -47,7 +47,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         <div className="flex items-center justify-between gap-3 bg-[#0B2240] px-7 py-6 text-white dark:bg-[#0D1322] dark:border-b dark:border-slate-800">
           <div className="flex items-center gap-4">
             <img
-              src="/assets/aistudio/Logo_44613c4c.png"
+              src="./assets/aistudio/Logo_44613c4c.png"
               alt="EMEL SHIPPING Logo"
               className="h-12 w-auto shrink-0 object-contain mix-blend-screen"
             />
