@@ -255,7 +255,7 @@ export default function App() {
               >
                 {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </button>
-                          <button
+              <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
                 aria-label={mobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
